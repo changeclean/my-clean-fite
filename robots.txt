@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://clever-griffin-93819d.netlify.app/sitemap.xml
