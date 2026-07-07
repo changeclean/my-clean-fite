@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-V5-5 Pro Plus v2 : main_deploy_v5_pro_plus.py
+V5-5 Pro Plus Fixed : main_deploy_v5_pro_plus.py
 
-메인과 지역 SEO 페이지를 분리한 최종 구조용 배포 엔진.
-
-사용 구조
-- home_template.html  : 베이스 사이트 메인 홈페이지용
-- template.html       : 지역 SEO 랜딩 페이지용. 기존 index.html을 template.html로 이름 변경해서 사용
-- deploys/index.html  : 네이버에 등록할 베이스 사이트 결과물
-
-실행 순서
-1) 기존 index.html 파일명을 template.html 로 변경
-2) home_template.html 을 같은 폴더에 넣기
-3) python make_sites_v5.py
-4) python main_deploy_v5_pro_plus.py --no-git
-5) 확인 후 python main_deploy_v5_pro_plus.py
+수정 내용
+- sitemap.xml을 정상 XML sitemap index로 생성
+- URL이 50,000개를 넘으면 sitemap-pages-1.xml, sitemap-pages-2.xml 형태로 자동 분할
+- sitemap-main.xml, sitemap-region.xml, sitemap-service.xml 생성
+- robots.txt는 sitemap.xml 인덱스를 바라보게 생성
 """
 
 from __future__ import annotations
@@ -49,6 +41,8 @@ SITE_URL = "https://changeclean1.netlify.app"
 BRAND_NAME = "체인지클린"
 PHONE_TEXT = "빠른상담:1688-6751"
 PHONE_NUMBER = "1688-6751"
+
+MAX_URLS_PER_SITEMAP = 50000
 
 
 @dataclass
@@ -113,6 +107,7 @@ def read_report_pages() -> List[Page]:
                 slug = clean(row.get("slug")).strip("/")
                 if not keyword or not slug:
                     continue
+
                 pages.append(Page(
                     keyword=keyword,
                     slug=slug,
@@ -277,9 +272,7 @@ def build_home_index(pages: List[Page]) -> None:
     for key, value in replacements.items():
         template = template.replace(key, value)
 
-    # 혹시 남은 템플릿 토큰은 제거
     template = re.sub(r"{{[A-Z가-힣0-9_]+}}", "", template)
-
     write_file(DEPLOYS_DIR / "index.html", template)
 
 
@@ -374,38 +367,98 @@ def build_category_pages(pages: List[Page]) -> None:
         )
 
 
-def collect_urls(pages: List[Page]) -> List[str]:
-    urls = [
+def xml_urlset(urls: List[str], priority: str = "0.8") -> str:
+    today = datetime.now().strftime("%Y-%m-%d")
+    items = []
+    for url in urls:
+        items.append(f"""  <url>
+    <loc>{esc(url)}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>{priority}</priority>
+  </url>""")
+
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{chr(10).join(items)}
+</urlset>
+"""
+
+
+def xml_sitemap_index(sitemap_urls: List[str]) -> str:
+    today = datetime.now().strftime("%Y-%m-%d")
+    items = []
+    for url in sitemap_urls:
+        items.append(f"""  <sitemap>
+    <loc>{esc(url)}</loc>
+    <lastmod>{today}</lastmod>
+  </sitemap>""")
+
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{chr(10).join(items)}
+</sitemapindex>
+"""
+
+
+def build_sitemap(pages: List[Page]) -> None:
+    DEPLOYS_DIR.mkdir(parents=True, exist_ok=True)
+
+    main_urls = [
         f"{SITE_URL.rstrip('/')}/",
         f"{SITE_URL.rstrip('/')}/regions/",
         f"{SITE_URL.rstrip('/')}/services/",
     ]
-    for page in pages:
-        urls.append(f"{SITE_URL.rstrip('/')}/{page.slug}/")
-    for region in group_by(pages, "region").keys():
-        urls.append(f"{SITE_URL.rstrip('/')}/region/{slugify(region)}/")
-    for service in group_by(pages, "service").keys():
-        urls.append(f"{SITE_URL.rstrip('/')}/service/{slugify(service)}/")
-    return sorted(set(urls))
 
+    region_urls = [
+        f"{SITE_URL.rstrip('/')}/region/{slugify(region)}/"
+        for region in sorted(group_by(pages, "region").keys())
+    ]
 
-def build_sitemap(pages: List[Page]) -> None:
-    today = datetime.now().strftime("%Y-%m-%d")
-    body = "\n".join(
-        f"""  <url>
-    <loc>{esc(url)}</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>{'1.0' if url.rstrip('/') == SITE_URL.rstrip('/') else '0.8'}</priority>
-  </url>"""
-        for url in collect_urls(pages)
-    )
-    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{body}
-</urlset>
-"""
-    write_file(DEPLOYS_DIR / "sitemap.xml", xml)
+    service_urls = [
+        f"{SITE_URL.rstrip('/')}/service/{slugify(service)}/"
+        for service in sorted(group_by(pages, "service").keys())
+    ]
+
+    page_urls = [
+        f"{SITE_URL.rstrip('/')}/{page.slug.strip('/')}/"
+        for page in pages
+    ]
+
+    sitemap_files = []
+
+    # 메인/카테고리
+    write_file(DEPLOYS_DIR / "sitemap-main.xml", xml_urlset(main_urls, priority="1.0"))
+    sitemap_files.append("sitemap-main.xml")
+
+    # 지역
+    write_file(DEPLOYS_DIR / "sitemap-region.xml", xml_urlset(region_urls, priority="0.7"))
+    sitemap_files.append("sitemap-region.xml")
+
+    # 서비스
+    write_file(DEPLOYS_DIR / "sitemap-service.xml", xml_urlset(service_urls, priority="0.7"))
+    sitemap_files.append("sitemap-service.xml")
+
+    # 대량 페이지 분할
+    for i in range(0, len(page_urls), MAX_URLS_PER_SITEMAP):
+        chunk = page_urls[i:i + MAX_URLS_PER_SITEMAP]
+        num = i // MAX_URLS_PER_SITEMAP + 1
+        filename = f"sitemap-pages-{num}.xml"
+        write_file(DEPLOYS_DIR / filename, xml_urlset(chunk, priority="0.8"))
+        sitemap_files.append(filename)
+
+    index_urls = [
+        f"{SITE_URL.rstrip('/')}/{name}"
+        for name in sitemap_files
+    ]
+
+    # sitemap.xml은 인덱스
+    write_file(DEPLOYS_DIR / "sitemap.xml", xml_sitemap_index(index_urls))
+
+    print("사이트맵 생성 완료:")
+    print(f"- sitemap.xml 인덱스")
+    for name in sitemap_files:
+        print(f"- {name}")
 
 
 def build_robots() -> None:
@@ -442,7 +495,7 @@ def run_git_deploy(message: str, dry_run: bool = False) -> int:
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="V5-5 Pro Plus v2 메인/카테고리/Git 배포 엔진")
+    parser = argparse.ArgumentParser(description="V5-5 Pro Plus Fixed 메인/카테고리/Git 배포 엔진")
     parser.add_argument("--no-git", action="store_true", help="Git 배포 실행 안 함")
     parser.add_argument("--dry-run", action="store_true", help="Git 명령 dry-run")
     parser.add_argument("--message", default="", help="Git commit 메시지")
@@ -468,7 +521,7 @@ def main() -> int:
     print("완료: deploys/index.html, regions, services, region, service, sitemap.xml, robots.txt 생성")
 
     if not args.no_git:
-        msg = args.message or f"V5 Pro Plus v2 deploy {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        msg = args.message or f"V5 Pro Plus fixed deploy {datetime.now().strftime('%Y-%m-%d %H:%M')}"
         return run_git_deploy(msg, dry_run=args.dry_run)
 
     print("Git 배포는 건너뛰었습니다.")
