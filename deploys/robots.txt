@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://changeclean.co.kr/city/sitemap.xml
+Sitemap: https://changeclean1.netlify.app/sitemap.xml
