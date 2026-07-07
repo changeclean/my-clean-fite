@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+.history/
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Git Lock
+*.lock
+
+# Temp
+*.tmp
+*.bak

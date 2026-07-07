@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+    /* 1. 기본 레이아웃 */
+    body { 
+        margin: 0; padding: 0; background-color: #ffffff; 
+        text-align: center; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; 
+        color: #333; line-height: 1.6; 
+    }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; border: 0; }
+
+    /* 2. 오늘의 현장 피드백 박스 (신뢰감 있는 파란색 버전으로 통합) */
+    .feedback-box {
+        margin: 40px auto; max-width: 800px; padding: 30px;
+        background-color: #f0f7ff; /* 연한 파란색 */
+        border-left: 5px solid #007bff; /* 포인트 바 */
+        border-radius: 8px; line-height: 1.8; color: #333;
+        text-align: left; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .feedback-title {
+        font-size: 1.4rem; font-weight: bold; color: #0056b3;
+        margin-bottom: 15px; display: flex; align-items: center;
+    }
+    .feedback-content {
+        font-size: 1.1rem; white-space: pre-line; /* 줄바꿈 유지 */
+    }
+    .badge {
+        display: inline-block; padding: 3px 8px; background: #007bff;
+        color: white; font-size: 0.8rem; border-radius: 4px; margin-right: 10px;
+    }
+
+    /* 3. FAQ 스타일 */
+    .faq-container { margin: 40px auto; max-width: 800px; text-align: left; padding: 0 20px; }
+    .faq-item { border-bottom: 1px solid #ddd; padding: 15px 0; text-align: left; }
+    .faq-item h3 { color: #007bff; font-size: 1.1rem; margin-bottom: 5px; }
+    .faq-item p { color: #555; }
+
+    /* 4. 페이지 번호(페이지네이션) */
+    .pagination { margin: 40px 0; text-align: center; }
+    .pagination a { 
+        display: inline-block; padding: 5px 10px; margin: 2px; 
+        border: 1px solid #ddd; color: #333; text-decoration: none; 
+        font-size: 12px; border-radius: 3px;
+    }
+    .pagination a:hover { background: #f0f0f0; }
+    .pagination a.active { background: #007bff; color: #fff; border-color: #007bff; }
+    
+    /* 5. 플로팅 버튼 */
+    .floating-tel { 
+        position: fixed; bottom: 30px; right: 30px; background: #ffcc00; 
+        color: #000 !important; padding: 15px 25px; border-radius: 50px; 
+        text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999; 
+    }
+</style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "LocalBusiness",
+    "name": "체인지클린 인천 부개동점",
+    "image": "https://changeclean.co.kr/city/images/M2.jpg",
+    "telephone": "1688-6751",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "주안동 981-17",
+      "addressLocality": "인천광역시 미추홀구",
+      "addressRegion": "인천",
+      "addressCountry": "KR"
+    }
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "실제이용고객"
+  },
+  "reviewBody": "인천 부개동 입주청소 서비스를 이용했는데, 구석구석 꼼꼼하게 작업해주셔서 새집처럼 깨끗해졌습니다. 강력 추천합니다!"
+}
+</script>
+    <title>인천 부개동 </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* 기본 설정 */
+        body { margin: 0; padding: 0; background-color: #ffffff; text-align: center; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; color: #333; line-height: 1.6; }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+        /* [상단] 파란 배경 섹션 */
+        .hero-section { 
+            background: #004080; 
+            height: 60vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-section p.sub-title { 
+            font-size: 1.2rem; 
+            color: #e0e0e0; 
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero-section h1 { 
+            font-size: 2.2rem; 
+            color: #ffffff; 
+            margin: 0;
+            font-weight: 800; 
+            letter-spacing: -1px;
+        }
+
+        /* [예약폼 섹션] */
+        .form-container { padding: 60px 20px; background: #f4f7fa; }
+        .form-box { 
+            max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; 
+            border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: left;
+        }
+        .form-box h2 { color: #004080; text-align: center; margin-bottom: 30px; font-size: 1.6rem; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #444; }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; 
+            box-sizing: border-box; font-size: 1rem; font-family: inherit;
+        }
+        
+        .submit-btn { 
+            width: 100%; background: #004080; color: #fff; border: none; padding: 18px; 
+            border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; margin-top: 10px;
+        }
+        .submit-btn:hover { background: #002d5a; }
+
+        /* [하단] 따라다니는 플로팅 전화 버튼 */
+        .floating-tel {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffcc00; 
+            color: #000 !important;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .floating-tel:hover { transform: scale(1.05); }
+
+        /* 모바일 대응 */
+        @media screen and (max-width: 768px) {
+            .hero-section { height: 50vh; }
+            .hero-section h1 { font-size: 1.8rem; }
+            .form-box { padding: 25px; }
+            .floating-tel { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1rem; }
+        }
+    </style>
+<title>인천 부개동 거주청소 전문업체｜체인지클린</title>
+<meta name="description" content="인천 부개동  거주청소 전문업체 체인지클린. 입주청소, 이사청소, 거주청소를 꼼꼼하게 진행합니다. 빠른상담 1688-6751">
+<link rel="canonical" href="https://changeclean.co.kr/city/incheon-bugae-dong-living-cleaning-professional/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="인천 부개동 거주청소 전문업체｜체인지클린">
+<meta property="og:description" content="인천 부개동  거주청소 전문업체 체인지클린. 입주청소, 이사청소, 거주청소를 꼼꼼하게 진행합니다. 빠른상담 1688-6751">
+<meta property="og:url" content="https://changeclean.co.kr/city/incheon-bugae-dong-living-cleaning-professional/">
+<meta property="og:site_name" content="체인지클린">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "체인지클린",
+  "url": "https://changeclean.co.kr/city/incheon-bugae-dong-living-cleaning-professional/",
+  "telephone": "1688-6751",
+  "areaServed": "인천 부개동",
+  "serviceType": "인천 부개동 거주청소 전문업체",
+  "description": "인천 부개동  거주청소 전문업체 체인지클린. 입주청소, 이사청소, 거주청소를 꼼꼼하게 진행합니다. 빠른상담 1688-6751",
+  "priceRange": "상담 후 안내"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "인천 부개동 공간 거주청소 범위는 어디까지인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "실내 전체, 주방, 욕실, 창틀, 베란다, 수납장 내부, 바닥 등을 현장 상태에 맞춰 진행합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "인천 부개동 거주청소 비용은 어떻게 정해지나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "평수, 오염도, 구조, 작업 범위, 옵션 유무에 따라 달라집니다. 사진과 주소를 알려주시면 더 정확한 상담이 가능합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "평수 거주청소 작업 시간은 얼마나 걸리나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "일반적으로 반나절에서 하루 정도 소요되며, 오염도와 구조에 따라 달라질 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "인천 부개동 당일 거주청소도 가능한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "예약 상황에 따라 당일 진행이 가능한 경우도 있으니 빠른 일정은 전화 상담을 권장합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "청소 후 검수도 해주시나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "작업 완료 후 주요 구역을 다시 확인하고 부족한 부분은 현장에서 보완합니다."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "홈",
+      "item": "https://changeclean.co.kr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "지역청소",
+      "item": "https://changeclean.co.kr/city/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "인천 부개동 거주청소 전문업체",
+      "item": "https://changeclean.co.kr/city/incheon-bugae-dong-living-cleaning-professional/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+    <!-- 상단 텍스트 구역 -->
+    <section class="hero-section">
+        <p class="sub-title">모든 청소의 기준</p>
+        <h1>인천 부개동</h1>
+        <p class="sub-title" style="margin-top:15px;">우리 동네 1등 청소 전문가가 찾아갑니다♥</p>
+    </section>
+
+    <!-- 이미지 리스트 1 -->
+    <div class="content-images">
+        <img src="../images/M2.jpg" alt="인천 부개동 입주청소 작업 현장">
+        <img src="../images/M3.jpg" alt="인천 부개동 청소 전후 비교 사진">
+        <img src="../images/M4.jpg" alt="인천 부개동 서비스 소개">   
+        <img src="../images/M6.jpg" alt="인천 부개동 청소 전후 비교 사진">
+    </div>
+    <div style="margin: 40px auto; max-width: 800px; padding: 25px; background: #f9f9f9; border-top: 4px solid #007bff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 0.85rem; color: #999; text-align: right; margin-bottom: 10px;">작성일: 2026-07-07</div>
+    <h3 style="margin-top: 0; color: #333;">🏠 어제 현장 피드백</h3>
+    <div style="line-height: 1.8; color: #444; font-size: 1.05rem;">
+        인천 부개동 거주청소는 구조와 오염도에 따라 작업 순서가 달라지므로 사전 점검이 중요합니다. 바닥은 소재에 맞춰 물 사용량을 조절하고 손상이 생기지 않도록 단계별로 닦았습니다. 주방은 후드, 싱크대, 배수구, 가스레인지 주변의 기름때를 충분히 불린 뒤 제거했습니다. 고객님께서는 창틀과 욕실 부분이 특히 깔끔해졌다고 말씀해 주셨습니다. 보이지 않는 곳까지 내 집처럼 확인하는 것이 체인지클린의 기본 원칙입니다.
+    </div>
+</div>
+
+<div style="margin: 40px auto; max-width: 800px;">
+    <h3 style="border-bottom: 2px solid #333; padding-bottom: 10px;">자주 묻는 질문 (FAQ)</h3>
+    <div style="margin-top: 20px;">
+        <section class='faq-section'><h2>자주 묻는 질문</h2>
+<div class='faq-item'><h3>Q. 인천 부개동 공간 거주청소 범위는 어디까지인가요?</h3><p>A. 실내 전체, 주방, 욕실, 창틀, 베란다, 수납장 내부, 바닥 등을 현장 상태에 맞춰 진행합니다.</p></div>
+<div class='faq-item'><h3>Q. 인천 부개동 거주청소 비용은 어떻게 정해지나요?</h3><p>A. 평수, 오염도, 구조, 작업 범위, 옵션 유무에 따라 달라집니다. 사진과 주소를 알려주시면 더 정확한 상담이 가능합니다.</p></div>
+<div class='faq-item'><h3>Q. 평수 거주청소 작업 시간은 얼마나 걸리나요?</h3><p>A. 일반적으로 반나절에서 하루 정도 소요되며, 오염도와 구조에 따라 달라질 수 있습니다.</p></div>
+<div class='faq-item'><h3>Q. 인천 부개동 당일 거주청소도 가능한가요?</h3><p>A. 예약 상황에 따라 당일 진행이 가능한 경우도 있으니 빠른 일정은 전화 상담을 권장합니다.</p></div>
+<div class='faq-item'><h3>Q. 청소 후 검수도 해주시나요?</h3><p>A. 작업 완료 후 주요 구역을 다시 확인하고 부족한 부분은 현장에서 보완합니다.</p></div>
+</section>
+    </div>
+</div>
+
+<div style="margin: 40px 0; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+    <p style="color: #888; font-size: 0.9rem;">📍 체인지클린 지역별 서비스 안내</p>
+    <div style="letter-spacing: 5px;">
+        
+    </div>
+</div>
+    <!-- 예약폼 구역 (중간에 배치하여 전환 유도) -->
+    <section class="form-container">
+        <div class="form-box">
+            <h2>📅 인천 부개동 간편 예약 신청</h2>
+            <form action="https://formspree.io/f/mvzlylrr" method="POST">
+                
+                <div class="form-group">
+                    <label>고객명</label>
+                    <input type="text" name="고객명" placeholder="성함을 입력해주세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label>연락처</label>
+                    <input type="tel" name="연락처" placeholder="010-0000-0000" required>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+                <div class="form-group">
+                    <label>상세주소</label>
+                    <input type="text" name="상세주소" placeholder="인천 부개동 상세 주소를 입력해주세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label>청소 원하는 날짜</label>
+                    <input type="date" name="청소희망일" required>
+                </div>
+
+                <div class="form-group">
+                    <label>청소 필요한 곳의 종류 (선택)</label>
+                    <select name="청소종류">
+                        <option value="">종류를 선택해주세요</option>
+                        <option value="입주청소">입주청소(신축 첫입주)</option>
+                        <option value="이사청소">이사청소(고객님기준 이사 들어가는곳)</option>
+                        <option value="퇴거청소">퇴거청소(고객님기준 이사 나가는곳)</option>
+                        <option value="상가/사무실">상가 또는 사무실청소</option>
+                        <option value="기타/부분">기타공간 또는 부분청소</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>청소 필요한 곳의 공간구조 (선택)</label>
+                    <select name="공간구조">
+                        <option value="">구조를 선택해주세요</option>
+                        <option value="원룸">원룸</option>
+                        <option value="1.5룸/오피스텔">1.5룸 또는 오피스텔(복층포함)</option>
+                        <option value="투룸">투룸</option>
+                        <option value="쓰리룸">쓰리룸</option>
+                        <option value="상가/사무실">상가 또는 사무실</option>
+                        <option value="기타/부분">기타 또는 부분청소</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>청소 필요한곳의 평수 또는 면적</label>
+                    <input type="text" name="평수" placeholder="ex. 25평/59제곱/84제곱">
+                </div>
+
+                <div class="form-group">
+                    <label>특이사항</label>
+                    <textarea name="특이사항" rows="4" placeholder="특이사항 자유롭게 작성해주세요♥"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">무료 견적 신청하기</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 이미지 리스트 2 -->
+    <div class="content-images">
+      		<img src="../images/M7.jpg" alt="인천 부개동 청소 비교">
+		<img src="../images/M8.jpg" alt="인천 부개동 청소 전후">
+		<img src="../images/M9.jpg" alt="인천 부개동 서비스 소개">	
+		<img src="../images/M10.jpg" alt="인천 부개동 청소예약과정">
+		<a href="http://pf.kakao.com/_EJFyn/chat/" target="_blank">
+		<img src="../images/kaka1.jpg" alt="인천 부개동 카카오친추"></a>
+		<a href="https://myhomecare.imweb.me/" target="_blank">
+		<img src="../images/banner.jpg" alt="인천 부개동 체인지클린 홈페이지"></a>	
+        <section style="padding: 40px 20px; background: #fff; text-align: left; max-width: 800px; margin: 0 auto;">
+    <h2 style="color: #004080; border-bottom: 2px solid #004080; padding-bottom: 10px;">⭐ 인천 부개동 고객 리얼 후기</h2>
+    <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <p style="font-weight: bold; margin-bottom: 5px;">인천 부개동 아파트 입주청소 <span style="color: #ffcc00;">★★★★★</span></p>
+        <p style="font-size: 0.95rem; color: #555;">"직접 오셔서 창틀이랑 싱크대 하부까지 다 확인시켜 주시네요. 인천 부개동에서 청소 업체 여러 번 써봤지만 체인지클린이 제일 꼼꼼합니다."</p>
+        <p style="font-size: 0.8rem; color: #999;">작성자: 김*호님 | 작성일: 2026.05.12</p>
+    </div>
+    <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <p style="font-weight: bold; margin-bottom: 5px;">인천 부개동 원룸 이사청소 <span style="color: #ffcc00;">★★★★★</span></p>
+        <p style="font-size: 0.95rem; color: #555;">"갑작스럽게 예약했는데도 시간 맞춰 와주시고, 찌든 때가 다 사라져서 너무 기분 좋게 이사했습니다. 감사합니다!"</p>
+        <p style="font-size: 0.8rem; color: #999;">작성자: 이*윤님 | 작성일: 2026.05.10</p>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="https://myhomecare.imweb.me/16" target="_blank" style="display: inline-block; background: #333; color: #fff; padding: 12px 20px; border-radius: 5px; font-weight: bold; text-decoration: none;">
+            🏠 공식 홈페이지 고객후기 더보기
+        </a>
+        <a href="https://naver.me/5imyvric" target="_blank" style="color: #03c75a; font-weight: bold; text-decoration: none;">▶ 네이버 플레이스에서 리뷰 82개 전체보기</a>
+    </div>
+</section>
+		<img src="../images/TEL.jpg" alt="청소 과정">
+		<ul>
+  <li><a href="https://myhomecare.imweb.me/" target="_blank">체인지클린 공식 홈페이지</a></li>
+    <li><a href="https://changeclean.co.kr/" target="_blank">체인지클린 웹페이지</a></li>
+  <li><a href="https://blog.naver.com/changeclean1" target="_blank">체인지클린 네이버 블로그</a></li>
+  <li><a href="https://changeclean.tistory.com/" target="_blank">체인지클린 티스토리</a></li>
+  <li><a href="https://naver.me/5imyvric" target="_blank">체인지클린 네이버 플레이스</a></li>
+  <li><a href="https://place.map.kakao.com/84029466?referrer=daumsearch_local" target="_blank">체인지클린 카카오맵</a></li>
+</ul>
+        <img src="../images/under.jpg" alt="고객 리뷰">
+    </div>
+
+    <!-- 플로팅 버튼 -->
+    <a href="tel:16886751" class="floating-tel">
+        📞 인천 부개동 견적문의 (클릭)
+    </a>
+<footer style="background-color: #f8f9fa; color: #666; padding: 30px 20px; border-top: 1px solid #eee; line-height: 1.6; font-size: 14px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h3 style="color: #333; margin-bottom: 15px;">인천 부개동 청소전문 | 체인지클린</h3>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 20px;">
+            <span><strong>상호명:</strong> 체인지클린</span>
+            <span><strong>대표자:</strong> 최 연 준</span> <span><strong>사업자등록번호:</strong> [519-74-60947]</span> <span><strong>대표번호:</strong> 1688-6751</span>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <p style="margin: 5px 0;"><strong>주소:</strong> 인천광역시 미추홀구 주안동 (인천 미추홀구 주안동 981-17)</p>
+            <p style="margin: 5px 0;"><strong>고객센터:</strong> 24시간 연중무휴 (문자 상담 가능)</p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;">
+        
+        <p style="font-size: 12px; color: #999;">
+            © 2026 체인지클린. All Rights Reserved. 인천 부개동 이사청소, 입주청소, 상가청소, 특수청소 전문 업체.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
