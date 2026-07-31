@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://changeclean1.netlify.app/sitemap.xml
+Sitemap: https://clever-griffin-93819d.netlify.app/sitemap.xml

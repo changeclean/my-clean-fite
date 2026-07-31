@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://changeclean1.netlify.app/sitemap-main.xml</loc>
-    <lastmod>2026-07-07</lastmod>
+    <loc>https://clever-griffin-93819d.netlify.app/sitemap-main.xml</loc>
+    <lastmod>2026-07-31</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://changeclean1.netlify.app/sitemap-region.xml</loc>
-    <lastmod>2026-07-07</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://changeclean1.netlify.app/sitemap-service.xml</loc>
-    <lastmod>2026-07-07</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://changeclean1.netlify.app/sitemap-pages-1.xml</loc>
-    <lastmod>2026-07-07</lastmod>
+    <loc>https://clever-griffin-93819d.netlify.app/sitemap-pages-1.xml</loc>
+    <lastmod>2026-07-31</lastmod>
   </sitemap>
 </sitemapindex>
