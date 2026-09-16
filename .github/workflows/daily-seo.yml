@@ -1,0 +1,45 @@
+name: Daily SEO 50 Posts
+
+on:
+  schedule:
+    # 매일 오전 9시 (KST) = 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-seo-50
+  cancel-in-progress: false
+
+jobs:
+  generate-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Generate 50 SEO posts
+        run: |
+          python daily_50_posts_buyer_longtail_FIXED.py --count 50 --no-git
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --cached --quiet; then
+            echo "변경사항 없음"
+            exit 0
+          fi
+          git commit -m "자동 SEO 게시글 50개 추가"
+          git push
