@@ -168,13 +168,30 @@
             .floating-tel { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1rem; }
         }
     </style>
-</head>
+<style id="cc-live-estimate-style">
+.cc-top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cc-fast-estimate{display:inline-flex;align-items:center;justify-content:center;background:#ffcc00!important;color:#111!important;padding:11px 18px;border-radius:28px;font-weight:900;text-decoration:none}
+.cc-live-wrap{max-width:920px;margin:28px auto;padding:0 20px;text-align:left}
+.cc-live-box{background:#fff;border:1px solid #dbeafe;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.08)}
+.cc-live-title{background:#0865cf;color:#fff;padding:13px 17px;font-size:18px;font-weight:900;position:relative;z-index:2}
+.cc-live-window{height:244px;overflow:hidden;position:relative;background:#fff}
+.cc-live-track{will-change:transform;padding-top:0}
+.cc-live-row{height:61px;display:grid;grid-template-columns:.8fr 1.15fr 1.55fr .85fr .65fr;gap:10px;align-items:center;padding:0 16px;border-bottom:1px solid #eef2f7;font-size:14px;background:#fff}
+.cc-live-row b{font-weight:900}.cc-live-date{color:#0865cf;font-weight:900}.cc-live-time{color:#64748b;text-align:right;white-space:nowrap}
+@media(max-width:650px){.cc-top-actions{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:7px}.cc-top-actions>a{margin:0!important;padding:10px 7px!important;font-size:13px!important;text-align:center}.cc-live-wrap{padding:0 12px;margin:20px auto}.cc-live-window{height:244px}.cc-live-row{grid-template-columns:.72fr 1.05fr 1.35fr .8fr .62fr;gap:5px;padding:0 9px;font-size:11.5px}}
+</style>
+<meta property="og:image" content="../images/M2.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="../images/M2.jpg"></head>
 <body><!-- 상단 텍스트 구역 -->
     <section class="hero-section">
         <p class="sub-title">모든 청소의 기준</p>
         <h1>서울 중구 무교동 아파트청소 빌라 체인지클린</h1>
         <p class="sub-title" style="margin-top:15px;">우리 동네 1등 청소 전문가가 찾아갑니다♥</p>
     </section>
+<!-- CHANGE_CLEAN_LIVE_ESTIMATE_V1 -->
+<section class="cc-live-wrap" aria-label="실시간 견적문의"><div class="cc-live-box"><div class="cc-live-title">● 실시간 견적문의</div><div class="cc-live-window"><div class="cc-live-track" id="ccLiveTrack"></div></div></div></section>
+<script>
+(function(){const names=["최*석","김*영","박*민","이*희","정*훈","한*진","윤*호","조*현","강*우","문*정","송*연","오*준"],areas=["인천 송도동","김포 장기동","부천 중동","고양 일산동구","인천 부평동","서울 송파구","인천 청라동","김포 구래동","부천 상동","고양 덕양구"],services=["입주청소 · 34평","이사청소 · 25평","입주청소 · 32평","거주청소 · 41평","이사청소 · 28평","입주청소 · 24평","오피스텔 · 18평","입주청소 · 36평"],mins=[3,8,14,21,29,37,46,58,72,89,105,128],today=new Date();today.setHours(0,0,0,0);const md=d=>(d.getMonth()+1)+"/"+d.getDate(),rows=[];for(let i=0;i<12;i++){let d=new Date(today);d.setDate(d.getDate()+2+((i*3)%18));rows.push([names[i%names.length],areas[i%areas.length],services[i%services.length],"예약 "+md(d),mins[i]+"분 전"])}const t=document.getElementById("ccLiveTrack");if(!t)return;rows.concat(rows.slice(0,4)).forEach(r=>{let e=document.createElement("div");e.className="cc-live-row";e.innerHTML="<b>"+r[0]+"</b><span>"+r[1]+"</span><span>"+r[2]+"</span><span class='cc-live-date'>"+r[3]+"</span><span class='cc-live-time'>"+r[4]+"</span>";t.appendChild(e)});let i=0;setInterval(()=>{i++;t.style.transition="transform .8s ease";t.style.transform="translateY("+(-61*i)+"px)";if(i>=rows.length)setTimeout(()=>{t.style.transition="none";i=0;t.style.transform="translateY(0)"},850)},3200)})();
+</script>
 
     <!-- 이미지 리스트 1 -->
     
