@@ -94,7 +94,7 @@
         /* [상단] 파란 배경 섹션 */
         .hero-section { 
             background: #004080; 
-            height: 60vh; 
+            min-min-height:60vh; height:auto; height:auto; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -162,7 +162,7 @@
 
         /* 모바일 대응 */
         @media screen and (max-width: 768px) {
-            .hero-section { height: 50vh; }
+            .hero-section { min-height:50vh; height:auto; padding-top:35px; padding-bottom:35px; }
             .hero-section h1 { font-size: 1.8rem; }
             .form-box { padding: 25px; }
             .floating-tel { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1rem; }
