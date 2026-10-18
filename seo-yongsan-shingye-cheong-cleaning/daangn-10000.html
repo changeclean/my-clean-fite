@@ -463,6 +463,18 @@
 <a href="https://naver.me/5imyvric" style="display:inline-block;margin:8px;color:#03c75a;font-weight:bold;text-decoration:none;" target="_blank">▶ 네이버 플레이스 리뷰 보기</a>
 </div>
 
+<style>
+.cc-review-viewport{overflow:hidden;width:100%;padding:8px 0}
+.cc-review-track{display:flex;gap:14px;width:max-content;animation:ccReviewFlow 34s linear infinite}
+.cc-review-track:hover{animation-play-state:paused}
+.cc-review-card{box-sizing:border-box;width:330px;min-height:170px;padding:20px;border:1px solid #e4e9ef;border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.06);white-space:normal}
+.cc-review-card b{display:block;font-size:16px;color:#1f2937;margin-bottom:10px}
+.cc-review-card b span{color:#ffb400}
+.cc-review-card p{font-size:14px;line-height:1.7;color:#555;margin:0 0 12px}
+.cc-review-card small{color:#999}
+@keyframes ccReviewFlow{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7px))}}
+@media(max-width:600px){.cc-review-slider{padding:28px 14px!important}.cc-review-card{width:270px;min-height:165px}.cc-review-track{animation-duration:30s}}
+</style>
 <script>(function(){var t=document.querySelector('.cc-review-track');if(t)t.innerHTML+=t.innerHTML})();</script>
 </section>
 <img alt="청소 과정" src="../images/TEL.jpg"/>
