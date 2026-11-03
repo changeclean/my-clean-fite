@@ -1,0 +1,64 @@
+name: Improve Existing SEO CTR (max 1000/day)
+
+on:
+  schedule:
+    # 매일 오전 10시(KST) = 01:00 UTC
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-ctr-update
+  cancel-in-progress: false
+
+jobs:
+  improve-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout existing SEO pages
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Preview changes (no file modifications)
+        run: python seo_ctr_improve.py --limit 1000 --dry-run
+
+      - name: Improve up to 1000 existing pages
+        run: python seo_ctr_improve.py --limit 1000
+
+      - name: Safety check (no deletions and max 1000 HTML files)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess
+          from pathlib import Path
+          lines = subprocess.check_output(["git", "status", "--porcelain"], text=True).splitlines()
+          html_files = [line[3:] for line in lines if line[3:].endswith(".html")]
+          deleted = [line for line in lines if line[:2].strip() == "D"]
+          bad = [p for p in html_files if p == "index.html" or "/../" in p or not p.endswith("/index.html")]
+          if deleted or bad or len(html_files) > 1000:
+              raise SystemExit(f"unsafe change: deletions={deleted[:2]}, invalid={bad[:2]}, html_count={len(html_files)}")
+          print(f"Validated {len(html_files)} existing HTML files; no deletions.")
+          PY
+
+      - name: Commit only approved updates and trigger Netlify deploy
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          if [ -f seo_ctr_updates.jsonl ]; then git add -- seo_ctr_updates.jsonl; fi
+          if git diff --cached --quiet; then
+            echo "No eligible pages need updating"
+            exit 0
+          fi
+          git commit -m "기존 SEO 페이지 CTR/GA4 자동 개선 (최대 1000개)"
+          git push
