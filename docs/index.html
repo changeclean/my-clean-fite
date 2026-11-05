@@ -1,97 +1,216 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#133d7a">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#152c64">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="원격실행기">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>A51 원격 실행</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <title>원격실행기</title>
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100svh;display:grid;place-items:center;padding:20px;background:#edf2fa;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#10243f}
-    main{width:min(100%,400px);background:white;border:1px solid #dae3f3;border-radius:22px;box-shadow:0 18px 40px #17356615;padding:30px 25px;text-align:center;position:relative}
-    h1{font-size:24px;letter-spacing:-.8px;margin:16px 0 9px}
-    p{color:#63738a;font-size:14px;line-height:1.6;margin:0 0 28px}
-    .gear{position:absolute;right:15px;top:15px;background:transparent;border:0;cursor:pointer;font-size:24px;color:#7a8799;padding:7px}
-    .launch{display:block;width:100%;border:0;border-radius:18px;padding:35px 10px;font-size:27px;font-weight:750;background:#1d56cf;color:white;box-shadow:0 9px 18px #1d56cf2b;cursor:pointer}
-    .launch:disabled{opacity:.6;cursor:wait}
-    .status{font-size:13px;color:#53657f;min-height:42px;margin-top:20px;line-height:1.6}
-    .foot{font-size:11px;color:#8290a4;line-height:1.6}
-    dialog{border:0;border-radius:18px;box-shadow:0 15px 55px #0005;width:min(95vw,390px);padding:22px}
-    dialog::backdrop{background:#172e4a99}
-    dialog h2{font-size:19px;margin:0 0 10px}
-    dialog p{text-align:left;margin:0 0 14px}
-    label{font-weight:600;display:block;font-size:13px;margin-bottom:6px}
-    input{width:100%;padding:12px;border:1px solid #c9d4e7;border-radius:11px;font-size:14px}
-    .actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}
-    .actions button{border:0;padding:11px 16px;border-radius:9px;font-weight:700;cursor:pointer}
-    .cancel{background:#eaf0f7;color:#345}
-    .save{background:#1d56cf;color:white}
-    #error{color:#b91c1c;font-size:12px;min-height:1.2em;margin-top:7px}
+  :root { color-scheme:light; --ink:#17233d; --muted:#73829c; --card:#ffffff; --line:#e7ebf4; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Segoe UI",sans-serif; color:var(--ink); background:#f3f6fc; -webkit-tap-highlight-color:transparent; }
+  button,input { font:inherit; }
+  button { touch-action:manipulation; }
+  .app { max-width:490px; min-height:100svh; margin:0 auto; background:#f7f9fd; box-shadow:0 0 50px #1024540a; }
+  .hero { color:white; background:linear-gradient(132deg,#172959 0%,#29499a 56%,#5574d4 100%); border-radius:0 0 32px 32px; padding:calc(28px + env(safe-area-inset-top)) 25px 42px; position:relative; overflow:hidden; }
+  .hero::before { content:""; position:absolute; width:210px; height:210px; border:1px solid #ffffff30; border-radius:50%; right:-72px; top:-95px; box-shadow:0 0 0 37px #ffffff0b,0 0 0 79px #ffffff08; pointer-events:none; }
+  .brand { display:flex; align-items:center; gap:12px; position:relative; }
+  .logo { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; background:#ffffff2a; border:1px solid #ffffff48; box-shadow:inset 0 1px 1px #ffffff30; }
+  .brand small { display:block; letter-spacing:2px; text-transform:uppercase; font-weight:700; font-size:10px; color:#cfdbff; margin-bottom:4px; }
+  .brand strong { font-size:24px; font-weight:850; letter-spacing:-1px; }
+  .hero-sub { margin:22px 0 0; font-size:14px; line-height:1.7; color:#e4ebff; position:relative; }
+  .content { padding:0 18px calc(28px + env(safe-area-inset-bottom)); margin-top:-21px; position:relative; }
+  .section-top { display:flex; align-items:center; justify-content:space-between; margin:0 5px 15px; padding-top:32px; }
+  .section-top h2 { font-size:17px; margin:0; letter-spacing:-.5px; }
+  .section-top .label { font-size:12px; font-weight:700; color:#7d8da9; }
+  .card { border-radius:24px; background:var(--card); margin-bottom:15px; padding:21px; border:1px solid #e9edf6; box-shadow:0 12px 36px #263b7910; }
+  .card-top { display:flex; align-items:flex-start; gap:13px; }
+  .picto { width:54px; height:54px; flex:none; border-radius:18px; display:grid; place-items:center; }
+  .partners .picto { background:#e9edff; color:#5264d2; }
+  .jobs .picto { background:#dcf6ee; color:#179f83; }
+  .card-title { flex:1; padding-top:3px; min-width:0; }
+  .card-title h3 { margin:0 0 6px; font-size:19px; line-height:1.3; font-weight:800; letter-spacing:-.6px; }
+  .card-title p { margin:0; color:#8390a4; font-size:12px; line-height:1.5; }
+  .settings { border:0; background:#f4f6fa; border-radius:11px; width:38px; height:38px; flex:none; display:grid; place-items:center; color:#71809b; cursor:pointer; }
+  .settings:focus-visible,.run:focus-visible,.modal-button:focus-visible { outline:3px solid #4e75ff80; outline-offset:2px; }
+  .info { display:flex; align-items:center; gap:7px; font-size:12px; margin:17px 0; min-height:23px; color:#8a98ad; }
+  .dot { width:7px; height:7px; border-radius:50%; flex:none; background:#c2cbd8; }
+  .configured .dot { background:#27ba8b; box-shadow:0 0 0 3px #27ba8b16; }
+  .run { width:100%; border:0; border-radius:15px; padding:17px 16px; display:flex; justify-content:center; align-items:center; gap:9px; color:white; font-size:16px; font-weight:800; cursor:pointer; box-shadow:0 8px 17px #24389a1e; transition:filter .15s,transform .15s; }
+  .run:active { transform:scale(.985); }
+  .run:disabled { filter:grayscale(.2); opacity:.65; cursor:wait; }
+  .partners .run { background:linear-gradient(110deg,#5468d6,#6978e9); }
+  .jobs .run { background:linear-gradient(110deg,#139b7a,#24bc9c); }
+  .result { font-size:12px; color:#64738e; line-height:1.5; min-height:18px; margin:12px 1px 0; }
+  .result:empty { display:none; }
+  .result.error { color:#b34145; }
+  .help { margin:23px 4px 0; padding:17px 18px; border:1px solid var(--line); border-radius:18px; background:#fff; display:flex; gap:12px; align-items:flex-start; }
+  .help svg { flex:none; color:#6576bc; margin-top:1px; }
+  .help strong { font-size:13px; }
+  .help p { font-size:12px; line-height:1.65; margin:6px 0 0; color:#7e8ba2; }
+  .foot { text-align:center; font-size:11px; color:#a0aabb; margin:24px 10px 0; line-height:1.8; }
+  dialog { border:0; padding:0; max-width:calc(100vw - 30px); width:435px; border-radius:23px; background:white; box-shadow:0 20px 75px #121d4b5a; }
+  dialog::backdrop { background:#0b1c3e91; backdrop-filter:blur(3px); }
+  .modal { padding:25px 23px 22px; }
+  .modal h2 { margin:0 0 7px; font-size:21px; letter-spacing:-.6px; }
+  .modal-desc { font-size:13px; color:#74829a; line-height:1.65; margin:0 0 22px; }
+  .modal label { display:block; font-size:13px; font-weight:750; margin-bottom:8px; }
+  .modal input { width:100%; min-width:0; border:1px solid #dbe2ee; border-radius:12px; padding:14px 13px; outline:none; color:#253658; background:#f9faff; font-size:13px; }
+  .modal input:focus { border-color:#667de8; box-shadow:0 0 0 3px #667de81b; }
+  .hint { font-size:11px; margin:9px 0 0; color:#8a97aa; line-height:1.55; }
+  .error-text { color:#c43c48; font-size:12px; margin-top:9px; min-height:14px; }
+  .modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:17px; }
+  .modal-button { border:0; border-radius:11px; padding:12px 15px; font-weight:750; font-size:13px; cursor:pointer; }
+  .secondary { background:#edf1f8; color:#495971; }
+  .primary { background:#385ed1; color:white; }
+  .danger { background:#fff0f0; color:#b7444d; margin-right:auto; }
+  @media(min-width:500px) { .app { margin:18px auto; border-radius:32px; overflow:hidden; min-height:calc(100svh - 36px); } .hero { padding-top:38px; } }
+  @media(prefers-reduced-motion:reduce) { .run { transition:none; } }
   </style>
 </head>
 <body>
-  <main>
-    <button class="gear" id="gear" title="트리거 주소 설정" aria-label="트리거 주소 설정">⚙</button>
-    <h1>A51 원격 실행</h1>
-    <p>갤럭시 A51의 MacroDroid 매크로를<br>버튼 한 번으로 실행합니다.</p>
-    <button class="launch" id="launch">▶ 실행</button>
-    <div class="status" id="status" role="status" aria-live="polite"></div>
-    <div class="foot">실행 요청은 카카오톡 메시지 발송 성공 확인과 다릅니다.</div>
-  </main>
-  <dialog id="settings">
-    <h2>최초 1회 설정</h2>
-    <p>MacroDroid에서 복사한 트리거 URL을 넣으세요. 이 주소는 GitHub에 저장되지 않고 현재 브라우저에만 저장됩니다.</p>
-    <label for="url">MacroDroid 트리거 URL</label>
-    <input id="url" type="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="https://trigger.macrodroid.com/...">
-    <div id="error" role="alert"></div>
-    <div class="actions">
-      <button class="cancel" id="cancel">취소</button>
-      <button class="save" id="save">저장</button>
+<div class="app">
+  <header class="hero">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="22" height="17" rx="4"/><path d="M11 10V7a5 5 0 0 1 10 0v3"/><path d="m14 18 3 3 5-6"/></svg>
+      </span>
+      <span><small>REMOTE CONTROL</small><strong>원격실행기</strong></span>
     </div>
-  </dialog>
-  <script>
-    (() => {
-      'use strict';
-      const KEY = 'a51_trigger_url_local_v1';
-      const el = id => document.getElementById(id);
-      const status = el('status');
-      const dlg = el('settings');
-      const input = el('url');
-      const launch = el('launch');
-      const getURL = () => { try { return localStorage.getItem(KEY) || ''; } catch { return ''; } };
-      const valid = v => {
-        try {
-          const u = new URL(v.trim());
-          return u.protocol === 'https:' && u.hostname === 'trigger.macrodroid.com'
-            && u.pathname.split('/').filter(Boolean).length >= 2 && !u.username && !u.password;
-        } catch { return false; }
-      };
-      const update = () => { status.textContent = valid(getURL()) ? '준비 완료 · 버튼을 눌러 실행하세요.' : '오른쪽 위 ⚙에서 트리거 주소를 1회 등록하세요.'; };
-      function showSettings() { input.value = getURL(); el('error').textContent = ''; dlg.showModal(); }
-      el('gear').addEventListener('click', showSettings);
-      el('cancel').addEventListener('click', () => dlg.close());
-      el('save').addEventListener('click', () => {
-        const v = input.value.trim();
-        if (!valid(v)) { el('error').textContent = 'MacroDroid 트리거 URL을 정확히 입력하세요.'; return; }
-        try { localStorage.setItem(KEY, v); } catch { el('error').textContent = '현재 브라우저에 저장할 수 없습니다.'; return; }
-        dlg.close(); update();
-      });
-      launch.addEventListener('click', async () => {
-        const url = getURL();
-        if (!valid(url)) { showSettings(); return; }
-        launch.disabled = true;
-        status.textContent = 'A51에 실행 요청을 보내고 있습니다...';
-        try {
-          await fetch(url, {method:'GET', mode:'no-cors', cache:'no-store', referrerPolicy:'no-referrer', credentials:'omit'});
-          status.textContent = '실행 요청을 보냈습니다. 실제 실행 여부는 A51에서 확인하세요.';
-        } catch {
-          status.textContent = '요청 결과를 확인할 수 없습니다. A51을 확인하거나 다시 시도하세요.';
-        }
-        setTimeout(() => { launch.disabled = false; }, 3000);
-      });
-      update();
-    })();
-  </script>
+    <p class="hero-sub">필요한 홍보 작업을<br>버튼 한 번으로 실행하세요.</p>
+  </header>
+  <main class="content">
+    <div class="section-top"><h2>실행 메뉴</h2><span class="label">갤럭시 A51 연동</span></div>
+
+    <article class="card partners" id="card-partners">
+      <div class="card-top">
+        <span class="picto" aria-hidden="true"><svg viewBox="0 0 32 32" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v4a3 3 0 0 0 3 3h3l3 5h4l-3-5h2l11 5V6L16 11H7a3 3 0 0 0-3 3Z"/><path d="M11 11v10M28 13a4 4 0 0 1 0 6"/></svg></span>
+        <div class="card-title"><h3>파트너스 홍보기</h3><p>파트너스 홍보 매크로 실행</p></div>
+        <button class="settings" data-settings="partners" aria-label="파트너스 홍보기 트리거 설정" title="트리거 URL 설정"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M20 12a8.5 8.5 0 0 0-.1-1.3l2-1.5-2-3.4-2.4 1a8.2 8.2 0 0 0-2.3-1.3L14.8 3h-4l-.4 2.5A8.2 8.2 0 0 0 8.1 6.8l-2.4-1-2 3.4 2 1.5a8.5 8.5 0 0 0 0 2.6l-2 1.5 2 3.4 2.4-1a8.2 8.2 0 0 0 2.3 1.3l.4 2.5h4l.4-2.5a8.2 8.2 0 0 0 2.3-1.3l2.4 1 2-3.4-2-1.5A8.5 8.5 0 0 0 20 12Z" transform="translate(-.8 0) scale(1.04)"/></svg></button>
+      </div>
+      <div class="info" id="info-partners"><span class="dot"></span><span class="msg">트리거 주소 설정 필요</span></div>
+      <button class="run" data-run="partners"><span aria-hidden="true">▶</span> 실행하기</button>
+      <p class="result" id="result-partners" role="status" aria-live="polite"></p>
+    </article>
+
+    <article class="card jobs" id="card-jobs">
+      <div class="card-top">
+        <span class="picto" aria-hidden="true"><svg viewBox="0 0 32 32" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="22" height="21" rx="4"/><path d="M11 7V4m10 3V4M5 14h22m-15 6h8m-8 4h5"/></svg></span>
+        <div class="card-title"><h3>구인글 홍보기</h3><p>구인글 홍보 매크로 실행</p></div>
+        <button class="settings" data-settings="jobs" aria-label="구인글 홍보기 트리거 설정" title="트리거 URL 설정"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M20 12a8.5 8.5 0 0 0-.1-1.3l2-1.5-2-3.4-2.4 1a8.2 8.2 0 0 0-2.3-1.3L14.8 3h-4l-.4 2.5A8.2 8.2 0 0 0 8.1 6.8l-2.4-1-2 3.4 2 1.5a8.5 8.5 0 0 0 0 2.6l-2 1.5 2 3.4 2.4-1a8.2 8.2 0 0 0 2.3 1.3l.4 2.5h4l.4-2.5a8.2 8.2 0 0 0 2.3-1.3l2.4 1 2-3.4-2-1.5A8.5 8.5 0 0 0 20 12Z" transform="translate(-.8 0) scale(1.04)"/></svg></button>
+      </div>
+      <div class="info" id="info-jobs"><span class="dot"></span><span class="msg">트리거 주소 설정 필요</span></div>
+      <button class="run" data-run="jobs"><span aria-hidden="true">▶</span> 실행하기</button>
+      <p class="result" id="result-jobs" role="status" aria-live="polite"></p>
+    </article>
+
+    <section class="help">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 10.3v6M12 7.3h.01"/></svg>
+      <div><strong>처음 한 번만 설정하면 끝!</strong><p>각 카드의 ⚙ 버튼에서 MacroDroid 웹훅 URL을 저장하세요. 주소는 이 브라우저에만 보관됩니다. 홈 화면에 추가하면 앱처럼 사용할 수 있습니다.</p></div>
+    </section>
+    <p class="foot">실행 요청을 전송하는 화면입니다.<br>카카오톡 발송 완료 여부는 A51에서 확인하세요.</p>
+  </main>
+</div>
+<dialog id="settings-dialog" aria-labelledby="dialog-title">
+  <form class="modal" id="settings-form" method="dialog" novalidate>
+    <h2 id="dialog-title">트리거 주소 설정</h2>
+    <p class="modal-desc">해당 작업의 MacroDroid 웹훅 URL을 한 번만 입력하세요. GitHub 저장소에는 기록되지 않습니다.</p>
+    <label for="webhook-url">MacroDroid 웹훅 URL</label>
+    <input id="webhook-url" name="webhook-url" type="url" placeholder="https://trigger.macrodroid.com/..." autocapitalize="off" spellcheck="false" autocomplete="off">
+    <p class="hint">주소는 해당 스마트폰·브라우저에 저장됩니다. 다른 기기에서는 별도 설정이 필요합니다.</p>
+    <div class="error-text" id="form-error" role="alert"></div>
+    <div class="modal-actions">
+      <button class="modal-button danger" type="button" id="delete-url">삭제</button>
+      <button class="modal-button secondary" type="button" id="close-dialog">취소</button>
+      <button class="modal-button primary" type="submit">저장</button>
+    </div>
+  </form>
+</dialog>
+<script>
+(() => {
+  'use strict';
+  const names = {partners:'파트너스 홍보기', jobs:'구인글 홍보기'};
+  const keys = {partners:'remote_launcher_partners_v2', jobs:'remote_launcher_jobs_v2'};
+  const $ = id => document.getElementById(id);
+  const dialog = $('settings-dialog');
+  const input = $('webhook-url');
+  const formError = $('form-error');
+  const activeRuns = new Set();
+  let editing = null;
+  function read(k) { try { return localStorage.getItem(k) || ''; } catch { return ''; } }
+  function write(k,v) { try { localStorage.setItem(k,v); return true; } catch { return false; } }
+  function remove(k) { try { localStorage.removeItem(k); return true; } catch { return false; } }
+  function valid(raw) {
+    try {
+      const u = new URL(raw.trim());
+      return u.protocol === 'https:' && u.hostname === 'trigger.macrodroid.com' &&
+        u.pathname.split('/').filter(Boolean).length >= 2 && !u.username && !u.password && !u.hash;
+    } catch { return false; }
+  }
+  const legacy = read('a51_trigger_url_local_v1');
+  if (!read(keys.partners) && valid(legacy)) write(keys.partners,legacy);
+
+  function status(id) {
+    const item = $('info-' + id), ready = valid(read(keys[id]));
+    item.classList.toggle('configured',ready);
+    item.querySelector('.msg').textContent = ready ? '실행 준비 완료' : '트리거 주소 설정 필요';
+  }
+  function report(id,msg,isError=false) {
+    const el = $('result-' + id);
+    el.textContent = msg;
+    el.classList.toggle('error',isError);
+  }
+  function openSettings(id) {
+    editing = id;
+    $('dialog-title').textContent = names[id] + ' 설정';
+    input.value = read(keys[id]);
+    formError.textContent = '';
+    dialog.showModal();
+  }
+  document.querySelectorAll('[data-settings]').forEach(btn => btn.addEventListener('click',() => openSettings(btn.dataset.settings)));
+  $('close-dialog').addEventListener('click',() => dialog.close());
+  $('delete-url').addEventListener('click',() => {
+    if (!editing) return;
+    if (!remove(keys[editing])) { formError.textContent = '설정을 삭제할 수 없습니다.'; return; }
+    status(editing); report(editing,''); dialog.close();
+  });
+  $('settings-form').addEventListener('submit',event => {
+    event.preventDefault();
+    if (!editing) return;
+    const value = input.value.trim();
+    if (!valid(value)) { formError.textContent = 'MacroDroid에서 복사한 올바른 트리거 URL을 입력해 주세요.'; return; }
+    if (!write(keys[editing],value)) { formError.textContent = '이 브라우저에는 주소를 저장할 수 없습니다.'; return; }
+    status(editing); report(editing,'설정이 저장됐습니다.'); dialog.close();
+  });
+  async function run(id) {
+    if (activeRuns.has(id)) return;
+    const url = read(keys[id]);
+    if (!valid(url)) { openSettings(id); return; }
+    activeRuns.add(id);
+    const button = document.querySelector('[data-run="' + id + '"]');
+    button.disabled = true;
+    report(id,'A51에 실행 요청을 보내는 중...');
+    try {
+      // MacroDroid does not expose a readable cross-origin response to this static page.
+      // no-cors confirms a request attempt only; it cannot verify webhook or KakaoTalk success.
+      await fetch(url,{method:'GET',mode:'no-cors',cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'});
+      report(id,'실행 요청을 시도했습니다. A51에서 동작 여부를 확인해 주세요.');
+    } catch {
+      report(id,'요청 결과를 확인할 수 없습니다. 네트워크와 A51 상태를 확인하세요.',true);
+    } finally {
+      setTimeout(() => { button.disabled = false; activeRuns.delete(id); },7000);
+    }
+  }
+  document.querySelectorAll('[data-run]').forEach(btn => btn.addEventListener('click',() => run(btn.dataset.run)));
+  Object.keys(keys).forEach(status);
+})();
+</script>
 </body>
 </html>
