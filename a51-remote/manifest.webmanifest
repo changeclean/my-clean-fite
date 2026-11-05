@@ -1,0 +1,18 @@
+{
+  "name": "원격실행기",
+  "short_name": "원격실행기",
+  "description": "갤럭시 A51 원격 매크로 실행",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f9fd",
+  "theme_color": "#152c64",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
