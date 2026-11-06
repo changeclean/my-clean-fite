@@ -250,6 +250,10 @@ def make_article(parent_slug, keyword, topic, post_slug, seq, imgs):
     desc = f"{title} 안내. {location} 청소 시 확인할 범위, 견적, 추가비용 조건과 예약 전 체크사항을 정리했습니다."
     return f"""<!doctype html>
 <html lang="ko"><head>
+<link rel="icon" href="https://clever-griffin-93819d.netlify.app/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="https://clever-griffin-93819d.netlify.app/favicon-48x48.png">
+<link rel="apple-touch-icon" href="https://clever-griffin-93819d.netlify.app/apple-touch-icon.png">
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} | 체인지클린</title>
 <meta name="description" content="{esc(desc[:160])}">
@@ -327,6 +331,10 @@ def make_board(parent_slug, keyword, posts):
     canonical = f"{SITE_URL}/{parent_slug}/cleaning-company/"
     location = clean_location_keyword(keyword)
     return f"""<!doctype html><html lang="ko"><head>
+<link rel="icon" href="https://clever-griffin-93819d.netlify.app/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="https://clever-griffin-93819d.netlify.app/favicon-48x48.png">
+<link rel="apple-touch-icon" href="https://clever-griffin-93819d.netlify.app/apple-touch-icon.png">
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(location)} 청소정보 | 체인지클린</title>
 <meta name="description" content="{esc(location)} 입주청소, 이사청소, 거주청소 비용과 범위, 업체 선택 정보를 확인하세요.">
