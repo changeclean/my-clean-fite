@@ -1,9 +1,9 @@
 {
   "scope": "existing local landing pages and cleaning-company subpages scanned by seo_ctr_improve.py",
-  "status": "in_progress",
-  "completed": false,
-  "eligible_remaining_detected": true,
-  "total_file_updates": 6000,
-  "last_run_modified": 1000,
-  "checked_at": "2026-11-09T07:48:21.804221+00:00"
+  "status": "completed",
+  "completed": true,
+  "eligible_remaining_detected": false,
+  "total_file_updates": 6798,
+  "last_run_modified": 798,
+  "checked_at": "2026-11-10T08:09:30.491813+00:00"
 }
