@@ -40,3 +40,14 @@
 - 직접 배포하려면 Netlify > Add new project > Import an existing project > GitHub > `changeclean/my-clean-fite` 선택 > 배포 브랜치 `v2-restore-2026-09-15` 선택 > Build command 공란, Publish directory `.` > Deploy
 - **중요:** 새 주소에 복제 사이트를 그대로 색인시키는 것은 검색 노출 회복책이 아님. 기존/신규 중복 URL, 신뢰성 없는 후기 구조화 데이터, 반복 콘텐츠, canonical, 사이트맵을 해결하기 전까지 `_headers`의 noindex를 제거하지 않는다.
 - Netlify 계정에 직접 접근하지 못했으므로 실제 신규 사이트 생성 및 외부 공개 배포는 아직 완료되지 않음.
+
+
+## 2026-11-21: 지역별 100개 시범 배포 (현재 적용 구성)
+- 현재 Netlify 설정: `[build] command="node v2-build-100.cjs"`, `publish="v2-dist"`. 이 설정이 앞의 `publish="."` 안내보다 우선합니다.
+- 목록: `v2-100-regions.json` (인천 30, 김포 15, 부천 15, 고양·일산 15, 서울 15, 파주 10)
+- 원본 용인 죽전동 페이지의 파란색 상단·청소 이미지·견적폼·스크롤 롤링을 사용. 복원본은 `/gyeong-yongin-su-jeon-cleaning/`로 유지합니다.
+- 빌드 생성 결과: `/area/{slug}/` 100개, `/regions/` 지역 목록, 기존 용인 죽전동 샘플 페이지.
+- 정적 견적폼: 기존 Formspree 주소를 그대로 사용, 추가로 `문의지역` 항목을 전달합니다. 실제 접수 정상 여부는 테스트해야 합니다.
+- 중복 색인 리스크 관리: 생성된 `_headers`에 `X-Robots-Tag: noindex` 설정. 검토 중 비색인; 이를 제거하면 즉시 검색 색인될 수 있으므로 품질·중복·폼 테스트 후 조정합니다.
+- 이전 9,000개 이상 지역 페이지는 새 배포 결과물에 포함되지 않습니다. GitHub의 과거 파일은 보존합니다.
+- 코드가 GitHub 브랜치에 저장되었으며 Netlify 실배포 완료는 별도로 확인해야 합니다.
