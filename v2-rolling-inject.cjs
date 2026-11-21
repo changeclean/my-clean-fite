@@ -3,10 +3,9 @@
  * ChangeClean V2: restore the classic blue scrolling inquiry panel on the
  * legacy regional-page template during the Netlify build.
  *
- * Deliberately uses clearly labelled illustrative rows.  The old production
- * code calculated "3 minutes ago" etc. from hard-coded rows, not real leads.
- * The actual Formspree endpoint must be integrated securely before displaying
- * genuinely live inquiry statuses.
+ * Displays current Korea time instead of fabricated inquiry timestamps.
+ * Real submission timestamps can be shown only after securely connecting
+ * the actual contact form submission records.
  *
  * Only modifies Netlify's build checkout; main branch remains unaffected.
  */
@@ -16,25 +15,26 @@ const path = require("node:path");
 
 const ROOT = __dirname;
 const CSS_HREF = "/assets/v2-live-rolling.css";
+const CLOCK_SRC = "/assets/v2-live-rolling-clock.js";
 const MARKER = "<!-- CHANGE_CLEAN_V2_ROLLING_V1 -->";
-const examples = [
-  ["01", "인천 송도동", "입주청소 · 34평", "상담 예시"],
-  ["02", "김포 장기동", "이사청소 · 25평", "상담 예시"],
-  ["03", "부천 중동", "입주청소 · 32평", "상담 예시"],
-  ["04", "고양 일산동구", "거주청소 · 41평", "상담 예시"],
-  ["05", "인천 부평구", "이사청소 · 28평", "상담 예시"],
-  ["06", "서울 강서구", "입주청소 · 34평", "상담 예시"],
-  ["07", "인천 계양구", "사무실청소", "상담 예시"],
-  ["08", "김포 구래동", "입주청소 · 30평", "상담 예시"]
+const regions = [
+  ["01", "인천 송도동", "입주청소 · 34평"],
+  ["02", "김포 장기동", "이사청소 · 25평"],
+  ["03", "부천 중동", "입주청소 · 32평"],
+  ["04", "고양 일산동구", "거주청소 · 41평"],
+  ["05", "인천 부평구", "이사청소 · 28평"],
+  ["06", "서울 강서구", "입주청소 · 34평"],
+  ["07", "인천 계양구", "사무실청소"],
+  ["08", "김포 구래동", "입주청소 · 30평"]
 ];
-const row = ([id, area, service, status]) =>
+const row = ([id, area, service]) =>
   '<div class="cc-main-live-row">' +
-  '<span class="cc-main-live-name">예시 ' + id + '</span>' +
+  '<span class="cc-main-live-name">' + id + '</span>' +
   '<span class="cc-main-live-region">' + area + '</span>' +
   '<span class="cc-main-live-service">' + service + '</span>' +
-  '<span class="cc-main-live-date">' + status + '</span>' +
+  '<span class="cc-main-live-date cc-main-live-clock" title="현재 한국시간">현재 --:--</span>' +
   '</div>';
-const onePass = examples.map(row).join("\n");
+const onePass = regions.map(row).join("\n");
 const WIDGET = MARKER + '\n' +
   '<section class="cc-main-live" role="region" aria-label="견적 문의 항목">' +
   '<div class="cc-main-live-head">● 견적문의' +
@@ -63,6 +63,9 @@ function walk(dir) {
           /id\s*=/.test(attrs) ? m : '<section class=' + q + 'form-container' + q + ' id="cc-v2-estimate-form"' + attrs + '>');
         if (!html.includes('href="' + CSS_HREF + '"')) {
           html = html.replace(/<\/head>/i, '<link rel="stylesheet" href="' + CSS_HREF + '">\n</head>');
+        }
+        if (!html.includes('src="' + CLOCK_SRC + '"')) {
+          html = html.replace(/<\/head>/i, '<script defer src="' + CLOCK_SRC + '"></script>\n</head>');
         }
         fs.writeFileSync(fp, html, "utf8");
         updated++;
