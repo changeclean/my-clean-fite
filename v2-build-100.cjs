@@ -68,14 +68,21 @@ const links=local.slice((i*3)%Math.max(1,local.length)).concat(local).slice(0,5)
 const nav='<div style="margin:40px auto;max-width:800px;text-align:center;padding:20px;border-top:1px solid #ddd"><p>📍 '+esc(e.group)+' 지역별 청소 안내</p>'+links.map(x=>'<a style="margin:6px;color:#075fce" href="/area/'+x.slug+'/">'+esc(x.dong)+' 청소</a>').join(" · ")+'<p><a style="font-weight:bold;color:#004080" href="/regions/">전체 100개 지역 보기</a></p></div>';
 h=block(h,'<div style="margin: 40px 0; text-align: center; border-top:','<!-- 예약폼 구역',nav);
 h=h.replace('<form action="https://formspree.io/f/mvzlylrr" method="POST">','<form action="https://formspree.io/f/mvzlylrr" method="POST"><input type="hidden" name="문의지역" value="'+esc(e.fullname)+'">');
-const reviews='<section class="cc-v2-review" style="padding:40px 20px;background:#fff;text-align:left;max-width:800px;margin:0 auto;box-sizing:border-box">'+
-'<h2 style="color:#004080;border-bottom:2px solid #004080;padding-bottom:10px">⭐ 체인지클린 고객 후기</h2>'+
-'<p style="line-height:1.8;color:#475569">체인지클린 이용 후기는 공식 홈페이지와 네이버 플레이스에서 확인하실 수 있습니다.</p>'+
-'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0">'+
-'<div style="padding:20px;background:#f8fbff;border:1px solid #d8e7fb;border-radius:12px"><div style="font-weight:800;color:#004080;font-size:17px">🏠 홈페이지 고객 후기</div><p style="color:#475569;line-height:1.7">체인지클린 고객 후기를 공식 홈페이지에서 확인하세요.</p><a href="https://myhomecare.imweb.me/16" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#004080;color:white;text-decoration:none;padding:12px 17px;border-radius:7px;font-weight:700">고객 후기 더보기</a></div>'+
-'<div style="padding:20px;background:#f7fdf8;border:1px solid #d7efda;border-radius:12px"><div style="font-weight:800;color:#138045;font-size:17px">💬 네이버 플레이스 후기</div><p style="color:#475569;line-height:1.7">네이버 플레이스에 등록된 이용자 후기를 확인하세요.</p><a href="https://naver.me/5imyvric" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#03c75a;color:white;text-decoration:none;padding:12px 17px;border-radius:7px;font-weight:700">네이버 리뷰 보러가기</a></div>'+
-'</div><p style="font-size:13px;color:#64748b">고객 후기 더보기</p></section>';
-h=block(h,'<section style="padding: 40px 20px; background: #fff; text-align: left; max-width: 800px; margin: 0 auto;">','</section>',reviews,true);
+// Restore the original two-entry review presentation from the original
+// Yongin Jukjeon page. Keep the original geographic reference in the
+// source text; never fabricate region-specific testimonials.
+const originalReviewStart='<section style="padding: 40px 20px; background: #fff; text-align: left; max-width: 800px; margin: 0 auto;">';
+const originalReviewAt=sample.indexOf(originalReviewStart);
+const originalReviewEnd=sample.indexOf("</section>",originalReviewAt);
+if(originalReviewAt<0||originalReviewEnd<0)throw Error("Missing original review section");
+let reviews=sample.slice(originalReviewAt,originalReviewEnd+"</section>".length);
+// The header identifies this as a ChangeClean testimonial section, not a new
+// review from the currently selected area.
+reviews=reviews.replace(
+  "⭐ 경기 용인시 수지구 죽전동 입주청소 이사청소 체인지클린 고객 리얼 후기",
+  "⭐ 체인지클린 고객 리얼 후기"
+).replace("네이버 플레이스에서 리뷰 82개 전체보기","네이버 플레이스에서 리뷰 전체보기");
+h=block(h,originalReviewStart,"</section>",reviews,true);
 if(h.includes("경기 용인시 수지구 죽전동")||h.includes("어제 현장 피드백")||h.includes('"@type": "Review"')||!h.includes("3분 전")||!h.includes("● 견적문의"))throw Error("Quality check failed "+e.slug);
 return h;
 }
