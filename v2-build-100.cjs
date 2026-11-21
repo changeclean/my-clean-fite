@@ -53,7 +53,7 @@ const canonical=SITE+"/area/"+e.slug+"/";
 h=h.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/i,"");
 h=h.replace(/<title>[\s\S]*?<\/title>/i,"<title>"+esc(title)+"</title>");
 h=h.replace(/<\/head>/i,'<meta name="description" content="'+esc(desc)+'"><link rel="canonical" href="'+canonical+'"><meta property="og:title" content="'+esc(title)+'"></head>');
-h=h.replace(/href="\.\/cleaning-company\/"/g,'href="/regions/"').replaceAll("우리 지역 청소업체찾기","체인지클린 지역별 청소 안내");
+h=h.replace(/href="\.\/cleaning-company\/"/g,'href="/"').replaceAll("우리 지역 청소업체찾기","체인지클린 지역별 청소 안내");
 const checklist=spans[e.kind].map(s=>'<li>'+esc(s)+'</li>').join("");
 const guide='<div style="margin:40px auto;max-width:800px;padding:25px;text-align:left;background:#f9f9f9;border-top:4px solid #007bff;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.05)"><h2 style="color:#004080">🏠 '+esc(e.fullname)+' 청소 체크 포인트</h2><p>'+esc(e.fullname)+' '+esc(e.kind)+' 청소를 상담할 때 확인할 내용입니다. '+esc(tip[i%tip.length])+'</p><ul style="line-height:2">'+checklist+'</ul><p style="font-size:13px;color:#64748b">※ 실제 작업 범위·비용은 공간 구조와 오염도 등에 따라 달라집니다.</p></div>';
 h=block(h,'<div style="margin: 40px auto; max-width: 800px; padding: 25px;','<div style="margin: 40px auto; max-width: 800px;">',guide);
@@ -83,21 +83,27 @@ reviews=reviews.replace(
   "⭐ 체인지클린 고객 리얼 후기"
 ).replace("네이버 플레이스에서 리뷰 82개 전체보기","네이버 플레이스에서 리뷰 전체보기");
 h=block(h,originalReviewStart,"</section>",reviews,true);
+h=h.replace(/href="\/regions\/"/g,'href="/"');
 const outsideReview=h.replace(reviews,"");
 if(outsideReview.includes("경기 용인시 수지구 죽전동")||h.includes("어제 현장 피드백")||h.includes('"@type": "Review"')||!h.includes("3분 전")||!h.includes("● 견적문의")||!h.includes("★★★★★")||!h.includes("작성자: 김*호님")||!h.includes("작성자: 이*윤님"))throw Error("Quality check failed "+e.slug);
 return h;
 }
 function hub(){
 const groups=[...new Set(regions.map(r=>r.group))].map(g=>'<section><h2>'+esc(g)+'</h2><div class="grid">'+regions.filter(r=>r.group===g).map(r=>'<a href="/area/'+r.slug+'/">'+esc(r.district?r.district+" "+r.dong:r.dong)+' 입주청소</a>').join("")+'</div></section>').join("");
-return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>체인지클린 지역별 입주청소·이사청소 100곳</title><style>body{margin:0;background:#f5f7fb;font-family:Arial,"Malgun Gothic",sans-serif}header{background:#004080;color:#fff;padding:50px 20px;text-align:center}main{max-width:1050px;margin:30px auto;padding:15px}section{background:#fff;padding:22px;margin:15px 0;border-radius:15px}h2{color:#004080}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px}.grid a{padding:13px;border:1px solid #dbe4f1;border-radius:8px;text-decoration:none;color:#075fce}p a{color:#ffcc00;font-weight:bold}</style></head><body><header><h1>체인지클린 지역별 청소 안내</h1><p>인천 · 김포 · 부천 · 고양 · 서울 · 파주 / 100개 지역</p><p><a href="tel:16886751">📞 1688-6751 상담하기</a></p></header><main>'+groups+'</main></body></html>';
+return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>체인지클린 | 인천·김포·부천·고양·서울·파주 입주청소</title><meta name="description" content="체인지클린 입주청소·이사청소 100개 지역별 안내. 청소 범위와 간편견적 문의를 확인하세요."><link rel="canonical" href="https://changeclean-v2-store.netlify.app/"><meta property="og:title" content="체인지클린 지역별 입주청소·이사청소"><style>body{margin:0;background:#f5f7fb;font-family:Arial,"Malgun Gothic",sans-serif}header{background:#004080;color:#fff;padding:50px 20px;text-align:center}main{max-width:1050px;margin:30px auto;padding:15px}section{background:#fff;padding:22px;margin:15px 0;border-radius:15px}h2{color:#004080}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px}.grid a{padding:13px;border:1px solid #dbe4f1;border-radius:8px;text-decoration:none;color:#075fce}p a{color:#ffcc00;font-weight:bold}</style></head><body><header><h1>체인지클린 지역별 청소 안내</h1><p>인천 · 김포 · 부천 · 고양 · 서울 · 파주 / 100개 지역</p><p><a href="tel:16886751">📞 1688-6751 상담하기</a></p></header><main>'+groups+'</main></body></html>';
 }
+// The preview remains noindex until business verification and duplicate-content QA.
 write("_headers","/*\n  X-Robots-Tag: noindex, nofollow, noarchive\n  X-Content-Type-Options: nosniff\n");
-write("_redirects","/ /gyeong-yongin-su-jeon-cleaning/ 302!\n");
+write("_redirects","# Home serves index.html. Do not redirect to the Yongin sample.\n");
 write("robots.txt","User-agent: *\nAllow: /\nSitemap: "+SITE+"/sitemap.xml\n");
-write("regions/index.html",hub());
-write("gyeong-yongin-su-jeon-cleaning/index.html",sample.replace(/href="\.\/cleaning-company\/"/g,'href="/regions/"'));
+const homeHTML=hub();
+write("index.html",homeHTML);
+write("regions/index.html",homeHTML);
+const referenceHTML=sample.replace(/href="\.\/cleaning-company\/"/g,'href="/"')
+  .replace(/<\/head>/i,'<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://clever-griffin-93819d.netlify.app/gyeong-yongin-su-jeon-cleaning/"></head>');
+write("gyeong-yongin-su-jeon-cleaning/index.html",referenceHTML);
 for(let i=0;i<regions.length;i++)write("area/"+regions[i].slug+"/index.html",build(regions[i],i));
-const urls=["regions/","gyeong-yongin-su-jeon-cleaning/",...regions.map(r=>"area/"+r.slug+"/")];
+const urls=["",...regions.map(r=>"area/"+r.slug+"/")];
 write("sitemap.xml",'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(p=>'<url><loc>'+SITE+'/'+p+'</loc></url>').join("\n")+'\n</urlset>');
 for(const fn of ["M2.jpg","M3.jpg","M4.jpg","M6.jpg","M7.jpg","M8.jpg","M9.jpg","M10.jpg","kaka1.jpg","banner.jpg","TEL.jpg","under.jpg"]){
 const src=path.join(ROOT,"images",fn),dest=path.join(OUT,"images",fn);
@@ -106,5 +112,20 @@ fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(src,dest);
 }
 fs.mkdirSync(path.join(OUT,"assets"),{recursive:true});
 fs.copyFileSync(path.join(ROOT,"assets","v2-live-rolling.css"),path.join(OUT,"assets","v2-live-rolling.css"));
+// Copy newly issued ownership verification files, without editing their contents.
+// Their original filenames must match the issuer's HTML instructions exactly.
+const proofs=path.join(ROOT,"site-verifications");
+const copied=[];
+if(fs.existsSync(proofs)){
+  for(const name of fs.readdirSync(proofs)){
+    if(!/^(?:naver|google)[A-Za-z0-9_-]+\.html$/.test(name))continue;
+    const content=fs.readFileSync(path.join(proofs,name),"utf8");
+    if(!content.trim())throw Error("Empty ownership verification HTML: "+name);
+    write(name,content);
+    copied.push(name);
+  }
+}
 if(fs.readdirSync(path.join(OUT,"area")).length!==100)throw Error("100 pages not generated");
-console.log("V2 100 curated regional pages built; reference preserved; 100 pages plus hub and reference; indexing remains disabled in preview.");
+const createdSitemap=fs.readFileSync(path.join(OUT,"sitemap.xml"),"utf8");
+if((createdSitemap.match(/<loc>/g)||[]).length!==101)throw Error("Expected 101 sitemap URLs");
+console.log("V2 indexing preparation: 100 areas, canonical homepage, 101 sitemap URLs, "+copied.length+" verification file(s). Preview remains noindex.");
