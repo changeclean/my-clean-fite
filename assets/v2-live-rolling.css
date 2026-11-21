@@ -10,7 +10,7 @@
 .cc-main-live-name{font-weight:900;color:#334155}
 .cc-main-live-region{font-weight:700}
 .cc-main-live-service{color:#334155}
-.cc-main-live-date{color:#075fce;font-weight:800;white-space:nowrap;text-align:right}
+.cc-main-live-time{color:#64748b;font-weight:800;white-space:nowrap;text-align:right}
 @keyframes ccMainScroll{from{transform:translateY(0)}to{transform:translateY(-488px)}}
 @media(max-width:600px){.cc-main-live{display:block!important;visibility:visible!important;min-height:0!important;margin:16px auto 22px!important}.cc-main-live-window{height:244px!important;overflow:hidden!important}.cc-main-live-head{font-size:16px;padding:13px 14px}.cc-main-live-row{grid-template-columns:45px 1fr 1.1fr 65px;padding:0 8px;gap:5px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.cc-main-live-track{animation:none;transform:none}.cc-main-live-window{overflow:auto}}
