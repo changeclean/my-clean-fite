@@ -1,0 +1,907 @@
+{
+  "version": 1,
+  "source": "curated geographic list, no fabricated local jobs",
+  "site": "https://changeclean-v2-store.netlify.app",
+  "entries": [
+    {
+      "slug": "incheon-bupyeong-bupyeong",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "부평동",
+      "fullname": "인천광역시 부평구 부평동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-bupyeong-bugae",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "부개동",
+      "fullname": "인천광역시 부평구 부개동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-bupyeong-sangok",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "산곡동",
+      "fullname": "인천광역시 부평구 산곡동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-bupyeong-samsan",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "삼산동",
+      "fullname": "인천광역시 부평구 삼산동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-bupyeong-galsan",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "갈산동",
+      "fullname": "인천광역시 부평구 갈산동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-bupyeong-sipjeong",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "부평구",
+      "dong": "십정동",
+      "fullname": "인천광역시 부평구 십정동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-gyeyang-gyesan",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "계양구",
+      "dong": "계산동",
+      "fullname": "인천광역시 계양구 계산동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-gyeyang-jakjeon",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "계양구",
+      "dong": "작전동",
+      "fullname": "인천광역시 계양구 작전동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-gyeyang-hyoseong",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "계양구",
+      "dong": "효성동",
+      "fullname": "인천광역시 계양구 효성동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-gyeyang-imhak",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "계양구",
+      "dong": "임학동",
+      "fullname": "인천광역시 계양구 임학동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-seo-cheongna",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "청라동",
+      "fullname": "인천광역시 서구 청라동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-seo-gajeong",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "가정동",
+      "fullname": "인천광역시 서구 가정동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-seo-geomam",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "검암동",
+      "fullname": "인천광역시 서구 검암동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-seo-dangha",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "당하동",
+      "fullname": "인천광역시 서구 당하동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-seo-wondang",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "원당동",
+      "fullname": "인천광역시 서구 원당동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-seo-majeon",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "마전동",
+      "fullname": "인천광역시 서구 마전동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-seo-gajwa",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "가좌동",
+      "fullname": "인천광역시 서구 가좌동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-seo-geomdan",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "서구",
+      "dong": "검단동",
+      "fullname": "인천광역시 서구 검단동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-yeonsu-songdo",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "연수구",
+      "dong": "송도동",
+      "fullname": "인천광역시 연수구 송도동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-yeonsu-yeonsu",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "연수구",
+      "dong": "연수동",
+      "fullname": "인천광역시 연수구 연수동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-yeonsu-okryeon",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "연수구",
+      "dong": "옥련동",
+      "fullname": "인천광역시 연수구 옥련동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-yeonsu-cheonghak",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "연수구",
+      "dong": "청학동",
+      "fullname": "인천광역시 연수구 청학동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-michuhol-juan",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "미추홀구",
+      "dong": "주안동",
+      "fullname": "인천광역시 미추홀구 주안동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-michuhol-yonghyeon",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "미추홀구",
+      "dong": "용현동",
+      "fullname": "인천광역시 미추홀구 용현동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-michuhol-hagik",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "미추홀구",
+      "dong": "학익동",
+      "fullname": "인천광역시 미추홀구 학익동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-namdong-guwol",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "남동구",
+      "dong": "구월동",
+      "fullname": "인천광역시 남동구 구월동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "incheon-namdong-nonhyeon",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "남동구",
+      "dong": "논현동",
+      "fullname": "인천광역시 남동구 논현동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "incheon-namdong-seochang",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "남동구",
+      "dong": "서창동",
+      "fullname": "인천광역시 남동구 서창동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "incheon-namdong-ganseok",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "남동구",
+      "dong": "간석동",
+      "fullname": "인천광역시 남동구 간석동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "incheon-namdong-mansu",
+      "group": "인천",
+      "city": "인천광역시",
+      "district": "남동구",
+      "dong": "만수동",
+      "fullname": "인천광역시 남동구 만수동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "gimpo-janggi",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "장기동",
+      "fullname": "경기도 김포시 장기동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "gimpo-unyang",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "운양동",
+      "fullname": "경기도 김포시 운양동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "gimpo-gurae",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "구래동",
+      "fullname": "경기도 김포시 구래동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "gimpo-masan",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "마산동",
+      "fullname": "경기도 김포시 마산동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "gimpo-pungmu",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "풍무동",
+      "fullname": "경기도 김포시 풍무동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "gimpo-sau",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "사우동",
+      "fullname": "경기도 김포시 사우동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "gimpo-gamjeong",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "감정동",
+      "fullname": "경기도 김포시 감정동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "gimpo-geolpo",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "걸포동",
+      "fullname": "경기도 김포시 걸포동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "gimpo-bukbyeon",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "북변동",
+      "fullname": "경기도 김포시 북변동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "gimpo-gochon",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "고촌읍",
+      "fullname": "경기도 김포시 고촌읍",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "gimpo-yangchon",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "양촌읍",
+      "fullname": "경기도 김포시 양촌읍",
+      "kind": "아파트"
+    },
+    {
+      "slug": "gimpo-tongjin",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "통진읍",
+      "fullname": "경기도 김포시 통진읍",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "gimpo-daegot",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "대곶면",
+      "fullname": "경기도 김포시 대곶면",
+      "kind": "원룸"
+    },
+    {
+      "slug": "gimpo-haseong",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "하성면",
+      "fullname": "경기도 김포시 하성면",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "gimpo-wolgot",
+      "group": "김포",
+      "city": "경기도 김포시",
+      "district": "",
+      "dong": "월곶면",
+      "fullname": "경기도 김포시 월곶면",
+      "kind": "아파트"
+    },
+    {
+      "slug": "bucheon-jung",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "중동",
+      "fullname": "경기도 부천시 중동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "bucheon-sang",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "상동",
+      "fullname": "경기도 부천시 상동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "bucheon-simgok",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "심곡동",
+      "fullname": "경기도 부천시 심곡동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "bucheon-wonmi",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "원미동",
+      "fullname": "경기도 부천시 원미동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "bucheon-yakdae",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "약대동",
+      "fullname": "경기도 부천시 약대동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "bucheon-chunui",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "춘의동",
+      "fullname": "경기도 부천시 춘의동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "bucheon-yeokgok",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "역곡동",
+      "fullname": "경기도 부천시 역곡동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "bucheon-songnae",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "송내동",
+      "fullname": "경기도 부천시 송내동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "bucheon-sosabon",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "소사본동",
+      "fullname": "경기도 부천시 소사본동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "bucheon-okgil",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "옥길동",
+      "fullname": "경기도 부천시 옥길동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "bucheon-beombak",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "범박동",
+      "fullname": "경기도 부천시 범박동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "bucheon-wonjong",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "원종동",
+      "fullname": "경기도 부천시 원종동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "bucheon-ojeong",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "오정동",
+      "fullname": "경기도 부천시 오정동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "bucheon-gogang",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "고강동",
+      "fullname": "경기도 부천시 고강동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "bucheon-yeowol",
+      "group": "부천",
+      "city": "경기도 부천시",
+      "district": "",
+      "dong": "여월동",
+      "fullname": "경기도 부천시 여월동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "goyang-deogyang-hwajeong",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "덕양구",
+      "dong": "화정동",
+      "fullname": "경기도 고양시 덕양구 화정동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "goyang-deogyang-haengsin",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "덕양구",
+      "dong": "행신동",
+      "fullname": "경기도 고양시 덕양구 행신동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "goyang-deogyang-samsong",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "덕양구",
+      "dong": "삼송동",
+      "fullname": "경기도 고양시 덕양구 삼송동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "goyang-deogyang-wonheung",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "덕양구",
+      "dong": "원흥동",
+      "fullname": "경기도 고양시 덕양구 원흥동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "goyang-deogyang-jichuk",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "덕양구",
+      "dong": "지축동",
+      "fullname": "경기도 고양시 덕양구 지축동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "goyang-ilsandong-baekseok",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산동구",
+      "dong": "백석동",
+      "fullname": "경기도 고양시 일산동구 백석동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "goyang-ilsandong-madu",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산동구",
+      "dong": "마두동",
+      "fullname": "경기도 고양시 일산동구 마두동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "goyang-ilsandong-janghang",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산동구",
+      "dong": "장항동",
+      "fullname": "경기도 고양시 일산동구 장항동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "goyang-ilsandong-pung",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산동구",
+      "dong": "풍동",
+      "fullname": "경기도 고양시 일산동구 풍동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "goyang-ilsandong-jungsan",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산동구",
+      "dong": "중산동",
+      "fullname": "경기도 고양시 일산동구 중산동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "goyang-ilsanseo-daehwa",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산서구",
+      "dong": "대화동",
+      "fullname": "경기도 고양시 일산서구 대화동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "goyang-ilsanseo-juyeop",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산서구",
+      "dong": "주엽동",
+      "fullname": "경기도 고양시 일산서구 주엽동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "goyang-ilsanseo-tanhyeon",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산서구",
+      "dong": "탄현동",
+      "fullname": "경기도 고양시 일산서구 탄현동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "goyang-ilsanseo-ilsan",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산서구",
+      "dong": "일산동",
+      "fullname": "경기도 고양시 일산서구 일산동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "goyang-ilsanseo-gajwa",
+      "group": "고양·일산",
+      "city": "경기도 고양시",
+      "district": "일산서구",
+      "dong": "가좌동",
+      "fullname": "경기도 고양시 일산서구 가좌동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "seoul-gangseo-magok",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "강서구",
+      "dong": "마곡동",
+      "fullname": "서울특별시 강서구 마곡동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "seoul-gangseo-hwagok",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "강서구",
+      "dong": "화곡동",
+      "fullname": "서울특별시 강서구 화곡동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "seoul-gangseo-deungchon",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "강서구",
+      "dong": "등촌동",
+      "fullname": "서울특별시 강서구 등촌동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "seoul-gangseo-gayang",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "강서구",
+      "dong": "가양동",
+      "fullname": "서울특별시 강서구 가양동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "seoul-gangseo-banghwa",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "강서구",
+      "dong": "방화동",
+      "fullname": "서울특별시 강서구 방화동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "seoul-yangcheon-mok",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "양천구",
+      "dong": "목동",
+      "fullname": "서울특별시 양천구 목동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "seoul-yangcheon-sinjeong",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "양천구",
+      "dong": "신정동",
+      "fullname": "서울특별시 양천구 신정동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "seoul-yangcheon-sinwol",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "양천구",
+      "dong": "신월동",
+      "fullname": "서울특별시 양천구 신월동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "seoul-guro-guro",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "구로구",
+      "dong": "구로동",
+      "fullname": "서울특별시 구로구 구로동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "seoul-guro-gaebong",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "구로구",
+      "dong": "개봉동",
+      "fullname": "서울특별시 구로구 개봉동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "seoul-guro-oryu",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "구로구",
+      "dong": "오류동",
+      "fullname": "서울특별시 구로구 오류동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "seoul-yeongdeungpo-dangsan",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "영등포구",
+      "dong": "당산동",
+      "fullname": "서울특별시 영등포구 당산동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "seoul-yeongdeungpo-munrae",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "영등포구",
+      "dong": "문래동",
+      "fullname": "서울특별시 영등포구 문래동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "seoul-eunpyeong-eungam",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "은평구",
+      "dong": "응암동",
+      "fullname": "서울특별시 은평구 응암동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "seoul-eunpyeong-bulgwang",
+      "group": "서울",
+      "city": "서울특별시",
+      "district": "은평구",
+      "dong": "불광동",
+      "fullname": "서울특별시 은평구 불광동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "paju-unjeong",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "운정동",
+      "fullname": "경기도 파주시 운정동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "paju-yadang",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "야당동",
+      "fullname": "경기도 파주시 야당동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "paju-dongpae",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "동패동",
+      "fullname": "경기도 파주시 동패동",
+      "kind": "아파트"
+    },
+    {
+      "slug": "paju-mokdong",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "목동동",
+      "fullname": "경기도 파주시 목동동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "paju-wadong",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "와동동",
+      "fullname": "경기도 파주시 와동동",
+      "kind": "원룸"
+    },
+    {
+      "slug": "paju-geumchon",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "금촌동",
+      "fullname": "경기도 파주시 금촌동",
+      "kind": "주거공간"
+    },
+    {
+      "slug": "paju-munsan",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "문산읍",
+      "fullname": "경기도 파주시 문산읍",
+      "kind": "아파트"
+    },
+    {
+      "slug": "paju-gyoha",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "교하동",
+      "fullname": "경기도 파주시 교하동",
+      "kind": "오피스텔"
+    },
+    {
+      "slug": "paju-tanhyeon",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "탄현면",
+      "fullname": "경기도 파주시 탄현면",
+      "kind": "원룸"
+    },
+    {
+      "slug": "paju-jori",
+      "group": "파주",
+      "city": "경기도 파주시",
+      "district": "",
+      "dong": "조리읍",
+      "fullname": "경기도 파주시 조리읍",
+      "kind": "주거공간"
+    }
+  ]
+}
