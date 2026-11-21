@@ -36,10 +36,10 @@ const row = ([id, area, service, status]) =>
   '</div>';
 const onePass = examples.map(row).join("\n");
 const WIDGET = MARKER + '\n' +
-  '<section class="cc-main-live" role="region" aria-label="견적 상담 예시 롤링">' +
-  '<div class="cc-main-live-head">● 견적문의 롤링' +
-  '<small class="cc-main-live-caption">상담 유형 예시 · 실제 실시간 접수 내역이 아닙니다</small></div>' +
-  '<a class="cc-main-live-window" href="#cc-v2-estimate-form" aria-label="견적 상담 예시를 보고 무료 견적 신청하기">' +
+  '<section class="cc-main-live" role="region" aria-label="견적 문의 항목">' +
+  '<div class="cc-main-live-head">● 견적문의' +
+  '</div>' +
+  '<a class="cc-main-live-window" href="#cc-v2-estimate-form" aria-label="견적 문의 항목을 보고 무료 견적 신청하기">' +
   '<div class="cc-main-live-track">' + onePass + onePass + '</div></a></section>';
 
 let visited = 0, updated = 0, skipped = 0, errors = 0;
