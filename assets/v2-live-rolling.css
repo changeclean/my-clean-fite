@@ -1,0 +1,16 @@
+/* CHANGE CLEAN V2: same blue rolling card visual; sample-only, not live bookings. */
+.cc-main-live{box-sizing:border-box;width:calc(100% - 24px);max-width:760px;margin:18px auto 26px;border:1px solid #dbeafe;border-radius:16px;overflow:hidden;background:#fff;color:#111827;box-shadow:0 8px 24px rgba(15,23,42,.13);font-family:Arial,"Noto Sans KR",sans-serif;text-align:left;position:relative;z-index:2}
+.cc-main-live *{box-sizing:border-box}
+.cc-main-live-head{background:#075fce;color:#fff;padding:13px 17px;font-size:18px;font-weight:900}
+.cc-main-live-caption{display:block;color:#e8f4ff;font-size:11px;font-weight:500;margin-top:4px}
+.cc-main-live-window{display:block;height:244px;overflow:hidden;text-decoration:none;color:#111827;cursor:pointer}
+.cc-main-live-track{display:block;animation:ccMainScroll 28s linear infinite;will-change:transform}
+.cc-main-live-window:hover .cc-main-live-track,.cc-main-live-window:focus-visible .cc-main-live-track{animation-play-state:paused}
+.cc-main-live-row{height:61px;display:grid;grid-template-columns:56px 1.25fr 1.3fr 88px;gap:8px;align-items:center;padding:0 14px;border-bottom:1px solid #eef2f7;font-size:13px}
+.cc-main-live-name{font-weight:900;color:#334155}
+.cc-main-live-region{font-weight:700}
+.cc-main-live-service{color:#334155}
+.cc-main-live-date{color:#075fce;font-weight:800;white-space:nowrap;text-align:right}
+@keyframes ccMainScroll{from{transform:translateY(0)}to{transform:translateY(-488px)}}
+@media(max-width:600px){.cc-main-live{display:block!important;visibility:visible!important;min-height:0!important;margin:16px auto 22px!important}.cc-main-live-window{height:244px!important;overflow:hidden!important}.cc-main-live-head{font-size:16px;padding:13px 14px}.cc-main-live-row{grid-template-columns:45px 1fr 1.1fr 65px;padding:0 8px;gap:5px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.cc-main-live-track{animation:none;transform:none}.cc-main-live-window{overflow:auto}}
