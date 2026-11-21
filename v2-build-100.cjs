@@ -43,6 +43,10 @@ const tip=[
 fs.rmSync(OUT,{recursive:true,force:true});fs.mkdirSync(OUT,{recursive:true});
 function build(e,i){
 let h=sample.replaceAll(ORIGINAL,e.fullname+" 입주청소 이사청소 체인지클린");
+// /area/{slug}/ is two URL levels deep. Legacy ../images/ would resolve
+// to /area/images/ (404); point every reused asset at the site root instead.
+h=h.replace(/((?:src|href)=["\'])\.\.\/images\//g,"$1/images/");
+if(/(?:src|href)=["\']\.\.\/images\//.test(h))throw Error("Broken relative image path remains: "+e.slug);
 const title=e.fullname+" 입주청소·이사청소 | 범위·견적 상담 - 체인지클린";
 const desc=e.fullname+" 입주청소·이사청소. "+e.kind+"의 청소 범위, 견적 준비사항, 주방·욕실·창틀 확인 포인트와 상담 신청을 안내합니다.";
 const canonical=SITE+"/area/"+e.slug+"/";
