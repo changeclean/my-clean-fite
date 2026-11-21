@@ -83,7 +83,8 @@ reviews=reviews.replace(
   "⭐ 체인지클린 고객 리얼 후기"
 ).replace("네이버 플레이스에서 리뷰 82개 전체보기","네이버 플레이스에서 리뷰 전체보기");
 h=block(h,originalReviewStart,"</section>",reviews,true);
-if(h.includes("경기 용인시 수지구 죽전동")||h.includes("어제 현장 피드백")||h.includes('"@type": "Review"')||!h.includes("3분 전")||!h.includes("● 견적문의"))throw Error("Quality check failed "+e.slug);
+const outsideReview=h.replace(reviews,"");
+if(outsideReview.includes("경기 용인시 수지구 죽전동")||h.includes("어제 현장 피드백")||h.includes('"@type": "Review"')||!h.includes("3분 전")||!h.includes("● 견적문의")||!h.includes("★★★★★")||!h.includes("작성자: 김*호님")||!h.includes("작성자: 이*윤님"))throw Error("Quality check failed "+e.slug);
 return h;
 }
 function hub(){
