@@ -29,3 +29,14 @@
 - 단순히 예전 9,019개 페이지를 새 URL에 복사해서 공개하지 않음
 - 검증된 운영 요소를 복원하되 정확성과 중복 콘텐츠 위험을 먼저 보완
 - 별도의 검증이 끝나기 전에는 V2를 공식 사이트로 전환하지 않음
+
+
+## 2026-11-21 새 Netlify 미리보기 배포 준비
+- `_redirects` 추가: 새 사이트의 / 접속은 복원 기준 페이지 `/gyeong-yongin-su-jeon-cleaning/`로 302 이동
+- `_headers` 추가: 모든 경로에 `X-Robots-Tag: noindex, nofollow, noarchive` 적용 (미리보기 중복 색인 방지)
+- `netlify.toml` 추가: `[build] publish = "."` 으로 정적 배포 대상 루트를 지정
+- `main` 및 기존 Netlify 서비스는 수정하지 않음
+- `daily-seo.yml` 자동 발행 워크플로가 현재 V2 브랜치에는 없음
+- 직접 배포하려면 Netlify > Add new project > Import an existing project > GitHub > `changeclean/my-clean-fite` 선택 > 배포 브랜치 `v2-restore-2026-09-15` 선택 > Build command 공란, Publish directory `.` > Deploy
+- **중요:** 새 주소에 복제 사이트를 그대로 색인시키는 것은 검색 노출 회복책이 아님. 기존/신규 중복 URL, 신뢰성 없는 후기 구조화 데이터, 반복 콘텐츠, canonical, 사이트맵을 해결하기 전까지 `_headers`의 noindex를 제거하지 않는다.
+- Netlify 계정에 직접 접근하지 못했으므로 실제 신규 사이트 생성 및 외부 공개 배포는 아직 완료되지 않음.
