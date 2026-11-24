@@ -73,6 +73,43 @@ def candidate_paths():
             yield from sorted(board.rglob("index.html"), key=preferred)
 
 
+
+AEO_MARKER = '<!-- changeclean-service-schema-v1 -->'
+JSONLD = re.compile(r'<script\b[^>]*type\s*=\s*["\']application/ld\+json["\'][^>]*>([\s\S]*?)</script\s*>', re.I)
+
+def add_service_schema(path, document):
+    if AEO_MARKER in document or not landing_metadata(document):
+        return document, False
+    title = landing_metadata(document)[0]
+    match = SERVICE_START.match(title.split(" | ")[0])
+    if not match:
+        return document, False
+    location = match.group(1)
+    url = SITE + "/" + path.parent.relative_to(ROOT).as_posix() + "/"
+    canonical = CANONICAL.search(document)
+    if canonical and url not in canonical.group():
+        return document, False
+    if re.search(r'<meta\b[^>]*content=["\'][^"\']*noindex', document, re.I):
+        return document, False
+    def strip_generic_review(m):
+        try:
+            obj = json.loads(m.group(1))
+        except (ValueError, TypeError):
+            return m.group()
+        if isinstance(obj, dict) and obj.get("@type") == "Review":
+            author = obj.get("author")
+            if isinstance(author, dict) and author.get("name") == "실제이용고객":
+                return ""
+        return m.group()
+    document = JSONLD.sub(strip_generic_review, document)
+    schema = {"@context":"https://schema.org","@graph":[
+        {"@type":"WebPage","url":url,"name":title,"inLanguage":"ko","publisher":{"@id":SITE+"/#organization"}},
+        {"@type":"Service","name":title.split(" | ")[0],"url":url,"areaServed":{"@type":"AdministrativeArea","name":location},"provider":{"@id":SITE+"/#organization"}}
+    ]}
+    payload = json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c")
+    return HEAD_OPEN.sub(lambda m: m.group()+"\n"+AEO_MARKER+'\n<script type="application/ld+json">'+payload+'</script>\n',document,count=1), True
+
+
 def improve(path: Path, document: str, landing: bool):
     if not HEAD_OPEN.search(document) or not TITLE.search(document):
         return document, []
@@ -98,6 +135,10 @@ def improve(path: Path, document: str, landing: bool):
         changes.append("ga4")
     if extra:
         updated = HEAD_OPEN.sub(lambda m: m.group() + "\n" + "\n".join(extra) + "\n", updated, count=1)
+    if landing:
+        updated, added = add_service_schema(path, updated)
+        if added:
+            changes.append("service_schema")
     return updated, changes
 
 
